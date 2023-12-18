@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import NavBar from "../NavBar";
 import Main from "../Main";
+import { Link } from "react-router-dom";
+import Fotter from "../Fotter";
+
 
 function Home() {
+
   const [showMovie, setShowMovie] = useState([]);
+  const movieHandleClick = (res) => {
+ //---
+  };
 
   const apiKey = "bd422e7b500e20ac0bad0f395328407c";
   const getMovieData = () => {
@@ -33,8 +39,19 @@ function Home() {
                   {totalAverage}
                 </div>
               </div>
-              <div className="w-full flex justify-center text-sm overflow-y-hidden font-bold">{res.title ? res.title : res.name}</div>
-              <button type="submit" className="bg-green-500 w-full rounded-b-md py-1 text-white">More Details</button>
+              <div className="w-full flex justify-center text-sm overflow-y-hidden font-bold">
+                {res.title ? res.title : res.name}
+              </div>
+              <Link to={`/movie-details/${res.id}`}>
+                {" "}
+                <button
+                  type="submit"
+                  onClick={() => movieHandleClick(res)}
+                  className="bg-green-500 w-full rounded-b-md py-1 text-white"
+                >
+                  More Details
+                </button>
+              </Link>
             </div>
           );
         });
@@ -51,8 +68,9 @@ function Home() {
 
   return (
     <div>
-      <NavBar />
+     
       <Main showMovie={showMovie} />
+      <Fotter />
     </div>
   );
 }
