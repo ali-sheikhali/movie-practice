@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import NavBar from "../NavBar";
 import Main from "../Main";
+
 function Home() {
   const [showMovie, setShowMovie] = useState([]);
 
@@ -15,9 +16,11 @@ function Home() {
       .then((response) => {
         console.log(response.data.results);
         const updated = response.data.results.map((res) => {
+          const totalAverage = Math.round(res.vote_average * 10) / 10;
+
           return (
             <div
-              className="mx-auto w-64 my-5 shadow-md rounded-md space-y-5"
+              className="mx-auto w-64 h-[480px] my-5 shadow-md rounded-md space-y-5 relative"
               key={res.id}
             >
               <img
@@ -25,7 +28,13 @@ function Home() {
                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face${res.poster_path}`}
                 alt=""
               />
-              <div className="w-full">{res.title} {res.name}</div>
+              <div className="bg-green-500 absolute rounded-full w-[40px] h-[40px] left-[10px] bottom-[60px] text-xs">
+                <div className="flex justify-center items-center mt-2.5">
+                  {totalAverage}
+                </div>
+              </div>
+              <div className="w-full flex justify-center text-sm overflow-y-hidden font-bold">{res.title ? res.title : res.name}</div>
+              <button type="submit" className="bg-green-500 w-full rounded-b-md py-1 text-white">More Details</button>
             </div>
           );
         });
