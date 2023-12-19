@@ -9,15 +9,13 @@ import Fotter from "../Fotter";
 function Home() {
 
   const [showMovie, setShowMovie] = useState([]);
-  const movieHandleClick = (res) => {
- //---
-  };
+ 
 
   const apiKey = "bd422e7b500e20ac0bad0f395328407c";
   const getMovieData = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=${apiKey}`
+        `https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${apiKey}`
       )
       .then((response) => {
         console.log(response.data.results);
@@ -46,7 +44,6 @@ function Home() {
                 {" "}
                 <button
                   type="submit"
-                  onClick={() => movieHandleClick(res)}
                   className="bg-green-500 w-full rounded-b-md py-1 text-white"
                 >
                   More Details

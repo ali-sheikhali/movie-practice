@@ -18,7 +18,7 @@ function SideBar() {
     SetMore(!more);
   };
   return (
-    <div className="flex flex-col h-[75%] fixed w-3/12 mt-5 shadow-md mr-1 bg-blue-900 ml-1 text-white rounded-md">
+    <div className="flex flex-col sticky top-5 py-5 mt-5 shadow-md mr-1 bg-blue-900 ml-1 text-white rounded-md">
       <div className="font-bold border-b-2 flex justify-around w-7/12 mx-auto my-5">
         <h1 className="">TMDB Movies</h1>
         <span className="font-bold text-3xl">
